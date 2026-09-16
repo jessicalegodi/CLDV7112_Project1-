@@ -2,12 +2,15 @@ using CLDV7112_Project1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// Add MVC services
 builder.Services.AddControllersWithViews();
 
-builder.Services.AddSingleton<AzureStorageService>();
+// Register Azure Storage Service
+builder.Services.AddScoped<AzureStorageService>();
 
 var app = builder.Build();
 
+// Configure HTTP request pipeline
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler("/Home/Error");
