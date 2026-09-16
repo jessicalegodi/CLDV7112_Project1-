@@ -1,0 +1,81 @@
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Order Processing";
+}
+
+<div class="container py-4">
+
+    <div class="page-header">
+
+        <h1>Order Processing</h1>
+
+        <p>
+            Order and inventory messages stored in Azure Queue Storage.
+        </p>
+
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h5>Add Order Message</h5>
+
+            <form asp-action="Send"
+                  method="post">
+
+                <input name="message"
+                       class="form-control mb-3"
+                       placeholder="Example: Processing order ORD001"
+                       required />
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Add Order Message
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h5>Queue Messages</h5>
+
+            @if (!Model.Any())
+            {
+                <p class="text-muted">
+                    No queue messages yet.
+                </p>
+            }
+            else
+            {
+                <div class="list-group">
+
+                    @foreach (var message in Model)
+                    {
+                        <div class="list-group-item">
+                            📦 @message
+                        </div>
+                    }
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
