@@ -15,7 +15,8 @@ namespace CLDV7112_Project1.Controllers
 
         public async Task<IActionResult> Index()
         {
-            var customers = await _storage.GetCustomersAsync();
+            var customers =
+                await _storage.GetCustomersAsync();
 
             return View(customers);
         }
@@ -27,7 +28,8 @@ namespace CLDV7112_Project1.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Create(Customer customer)
+        public async Task<IActionResult> Create(
+            Customer customer)
         {
             if (!ModelState.IsValid)
             {
