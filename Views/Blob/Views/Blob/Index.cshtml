@@ -1,0 +1,88 @@
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "Product Images";
+}
+
+<div class="container py-4">
+
+    <div class="page-header">
+        <h1>Product Images</h1>
+        <p>
+            Multimedia content stored in Azure Blob Storage.
+        </p>
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h5>Upload Product Image</h5>
+
+            <form asp-action="Upload"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <input type="file"
+                       name="file"
+                       class="form-control mb-3"
+                       accept="image/*"
+                       required />
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Upload Image
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h5>Stored Images</h5>
+
+            @if (!Model.Any())
+            {
+                <p class="text-muted">
+                    No images uploaded yet.
+                </p>
+            }
+            else
+            {
+                <div class="row">
+
+                    @foreach (var file in Model)
+                    {
+                        <div class="col-md-4 mb-3">
+
+                            <div class="storage-item">
+
+                                <strong>
+                                    📷 @file
+                                </strong>
+
+                            </div>
+
+                        </div>
+                    }
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
