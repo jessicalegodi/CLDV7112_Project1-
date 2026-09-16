@@ -1,0 +1,82 @@
+@model IEnumerable<string>
+
+@{
+    ViewData["Title"] = "System Logs";
+}
+
+<div class="container py-4">
+
+    <div class="page-header">
+
+        <h1>System Logs</h1>
+
+        <p>
+            Log files stored in Azure File Storage.
+        </p>
+
+    </div>
+
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">
+            @TempData["Message"]
+        </div>
+    }
+
+    <div class="card shadow-sm mb-4">
+
+        <div class="card-body">
+
+            <h5>Upload Log File</h5>
+
+            <form asp-action="Upload"
+                  method="post"
+                  enctype="multipart/form-data">
+
+                <input type="file"
+                       name="file"
+                       class="form-control mb-3"
+                       required />
+
+                <button type="submit"
+                        class="btn btn-primary">
+                    Upload Log
+                </button>
+
+            </form>
+
+        </div>
+
+    </div>
+
+    <div class="card shadow-sm">
+
+        <div class="card-body">
+
+            <h5>Stored Log Files</h5>
+
+            @if (!Model.Any())
+            {
+                <p class="text-muted">
+                    No log files uploaded yet.
+                </p>
+            }
+            else
+            {
+                <div class="list-group">
+
+                    @foreach (var file in Model)
+                    {
+                        <div class="list-group-item">
+                            📄 @file
+                        </div>
+                    }
+
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+</div>
