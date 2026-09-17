@@ -3,5 +3,8 @@ obj/
 .vs/
 *.user
 *.suo
+
 appsettings.Development.json
 secrets.json
+
+AzureFunctions/CLDV7112Functions/local.settings.json
