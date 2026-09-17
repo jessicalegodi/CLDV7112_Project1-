@@ -1,4 +1,4 @@
- CLDV7112 Project 1 - Azure Storage Solution
+ CLDV7112 Project 2 - Azure Storage Solution
 
  Module
 
